@@ -1,0 +1,32 @@
+.container {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.row {
+  border-bottom: 1px solid #ddd;
+}
+
+.cell {
+  padding: 8px;
+}
+
+.bold {
+  font-weight: bold;
+  text-align: left;
+  color: #555;
+}
+
+.normal {
+  text-align: right;
+  color: #333;
+}
+
+.message {
+  text-align: center;
+  color: #888;
+}
+
+.inset {
+  padding: 2rem;
+}
