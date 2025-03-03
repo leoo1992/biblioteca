@@ -1,5 +1,4 @@
-import { Author } from "./Author";
-import { Book } from "./Books";
+import { TableData } from "./Table";
 
 export interface DataItem {
   id: number;
@@ -8,7 +7,7 @@ export interface DataItem {
 }
 
 export interface ConfirmProps {
-  data: DataItem[] | Author[] | Book[] | undefined;
+  data: TableData[] | undefined;
   columns?: { header: string; accessorKey: string }[];
   open: boolean;
   onClose: () => void;

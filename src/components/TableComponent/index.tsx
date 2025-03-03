@@ -17,9 +17,7 @@ import {
   TbTrash,
   TbEye,
 } from "react-icons/tb";
-import { Author, DetailedAuthor } from "../../types/Author";
-import { Book, DetailedBook } from "../../types/Books";
-import { TableProps } from "../../types/Table";
+import { TableData, TableProps } from "../../types/Table";
 import Modal from "../Modal";
 import ShowInfosModal from "../ShowInfosModal";
 
@@ -32,10 +30,8 @@ export default function TableComponent({
   deleteFunc,
   saveFunc,
 }: Readonly<TableProps>) {
-  const [selectedDataRow, setSelectedDataRow] =
-    useState<(DetailedAuthor | DetailedBook)[]>();
-  const [selectedDataShow, setSelectedDataShow] =
-    useState<(DetailedAuthor | DetailedBook | Book | Author)[]>();
+  const [selectedDataRow, setSelectedDataRow] = useState<TableData[]>();
+  const [selectedDataShow, setSelectedDataShow] = useState<TableData[]>();
   const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false);
   const [isModalAddOpen, setIsModalAddOpen] = useState(false);
   const [tableWidth, setTableWidth] = useState("auto");
@@ -48,9 +44,9 @@ export default function TableComponent({
     ? [...columns]
     : [{ header: "Sem colunas definidas", accessorKey: "" }];
 
-  let fallbackData: (DetailedAuthor | DetailedBook)[];
+  let fallbackData: TableData[];
   if (validData) {
-    fallbackData = data as (DetailedAuthor | DetailedBook)[];
+    fallbackData = data as TableData[];
   } else {
     fallbackData =
       type === "authors"
@@ -78,7 +74,7 @@ export default function TableComponent({
           ];
   }
 
-  const table = useReactTable<DetailedAuthor | DetailedBook | Author | Book>({
+  const table = useReactTable<TableData>({
     columns: columns ?? fallbackColumn,
     data: data ?? fallbackData,
     getCoreRowModel: getCoreRowModel(),
@@ -97,6 +93,8 @@ export default function TableComponent({
 
     return () => window.removeEventListener("resize", updateTableWidth);
   }, []);
+
+  console.log(selectedDataRow);
 
   return (
     <Flex direction="column" align="center" width="100%" height="100%">
@@ -265,9 +263,10 @@ export default function TableComponent({
                     color="red"
                     className={styles.button}
                     onClick={() => {
-                      if ("recommendedAge" in row.original) {
+                      if ("id" in row.original) {
                         setSelectedDataRow([row.original]);
                       }
+
                       setIsDeleteAlertOpen(true);
                     }}
                   >

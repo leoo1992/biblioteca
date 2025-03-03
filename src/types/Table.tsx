@@ -1,5 +1,7 @@
-import { DetailedAuthor } from "./Author";
-import { DetailedBook } from "./Books";
+import { Author, DetailedAuthor } from "./Author";
+import { Book, DetailedBook } from "./Books";
+
+export type TableData = DetailedAuthor | DetailedBook | Author | Book;
 
 export interface TableProps {
   data:

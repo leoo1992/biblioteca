@@ -12,6 +12,8 @@ export default function AlertConfirm({
   type,
   deleteFunc,
 }: Readonly<ConfirmProps>) {
+  console.log(data);
+
   const getOneOfDataArray = data ? data.slice(0, 1) : [];
   const getTwoOfColumnArray = columns ? columns.slice(0, 2) : [];
   const getTwoRowsOfArray = getOneOfDataArray.map((item) => ({
@@ -51,7 +53,9 @@ export default function AlertConfirm({
           <AlertDialog.Action>
             <Button
               color="red"
-              onClick={() => deleteFunc(getTwoRowsOfArray[0].id)}
+              onClick={() => {
+                deleteFunc(getTwoRowsOfArray[0].id);
+              }}
             >
               Excluir
             </Button>
