@@ -35,10 +35,6 @@ A aplicação é responsiva e pode ser utilizada tanto em dispositivos móveis q
 
 ### Dependências:
 
-npm install react react-dom react-scripts typescript @tanstack/react-table react-hook-form
-
-### Dependências:
-
 - `npm install react react-dom react-scripts typescript @tanstack/react-table react-hook-form`
 
 ### Dependências de Desenvolvimento:
