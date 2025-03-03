@@ -61,4 +61,4 @@ npm install react react-dom react-scripts typescript @tanstack/react-table react
 
 5. **Se preferir - foi feito o deploy no link abaixo:**
 
-- [http://localhost:3000](http://localhost:3000)
+- [https://biblioteca-pi.vercel.app/](https://biblioteca-pi.vercel.app/)
