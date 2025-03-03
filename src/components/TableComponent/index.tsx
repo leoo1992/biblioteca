@@ -139,6 +139,11 @@ export default function TableComponent({
               radius="large"
               variant="soft"
               color="iris"
+              name="primeira"
+              id="primeira"
+              aria-description="primeira"
+              aria-details="primeira"
+              aria-describedby="primeira"
               onClick={() => table.firstPage()}
               disabled={!table.getCanPreviousPage()}
             >
@@ -149,6 +154,11 @@ export default function TableComponent({
               radius="large"
               variant="soft"
               color="iris"
+              name="anterior"
+              id="anterior"
+              aria-description="anterior"
+              aria-details="anterior"
+              aria-describedby="anterior"
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
             >
@@ -166,6 +176,11 @@ export default function TableComponent({
               radius="large"
               variant="soft"
               color="iris"
+              name="proxima"
+              id="proxima"
+              aria-description="proxima"
+              aria-details="proxima"
+              aria-describedby="proxima"
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
             >
@@ -176,6 +191,11 @@ export default function TableComponent({
               radius="large"
               variant="soft"
               color="iris"
+              name="ultima"
+              id="ultima"
+              aria-description="ultima"
+              aria-details="ultima"
+              aria-describedby="ultima"
               onClick={() => table.lastPage()}
               disabled={!table.getCanNextPage()}
             >
