@@ -4,8 +4,8 @@ import { ShowInfos } from "../../types/ShowInfos";
 import { useAuthorsContext } from "../../hooks/useAuthorsContext";
 import { useBooksContext } from "../../hooks/useBooksContext";
 import { useEffect, useState } from "react";
-import { DetailedAuthor } from "../../types/Author";
-import { DetailedBook } from "../../types/Books";
+import { Author, DetailedAuthor } from "../../types/Author";
+import { Book, DetailedBook } from "../../types/Books";
 
 export default function ShowInfosModal({
   open,
@@ -13,9 +13,9 @@ export default function ShowInfosModal({
   onClose,
   type,
 }: Readonly<ShowInfos>) {
-  const [infos, setInfos] = useState<DetailedBook | DetailedAuthor | null>(
-    null
-  );
+  const [infos, setInfos] = useState<
+    DetailedBook | DetailedAuthor | Author | Book | null
+  >(null);
   const { detailedAuthors, detailedColumns } = useAuthorsContext();
   const { detailedBooks, detailedBColumns } = useBooksContext();
 
@@ -36,7 +36,7 @@ export default function ShowInfosModal({
       return;
     }
 
-    let foundInfo: DetailedBook | DetailedAuthor | undefined;
+    let foundInfo: DetailedBook | DetailedAuthor | Author | Book | undefined;
 
     if (type === "authors") {
       foundInfo = detailedAuthors.find((author) => author.id === idSearch);

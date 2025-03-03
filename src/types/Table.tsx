@@ -2,7 +2,11 @@ import { DetailedAuthor } from "./Author";
 import { DetailedBook } from "./Books";
 
 export interface TableProps {
-  readonly data: DetailedAuthor[] | DetailedBook[];
+  data:
+    | DetailedAuthor[]
+    | DetailedBook[]
+    | undefined
+    | { id: number; author: string; book: string }[];
   readonly columns?: { header: string; accessorKey: string }[];
   readonly useDelete?: boolean;
   readonly type: "books" | "authors";

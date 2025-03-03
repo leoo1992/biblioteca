@@ -48,7 +48,7 @@ npm install react react-dom react-scripts typescript @tanstack/react-table react
 ## Como Rodar o Projeto
 
 1. **Clone o repositório:**
-   - Execute o comando: `git clone`
+   - Execute o comando: `git clone https://github.com/leoo1992/biblioteca`
 
 2. **Instale as dependências:**
    - Navegue até a pasta do projeto e execute o comando: `npm install`

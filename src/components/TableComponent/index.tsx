@@ -17,8 +17,8 @@ import {
   TbTrash,
   TbEye,
 } from "react-icons/tb";
-import { DetailedAuthor } from "../../types/Author";
-import { DetailedBook } from "../../types/Books";
+import { Author, DetailedAuthor } from "../../types/Author";
+import { Book, DetailedBook } from "../../types/Books";
 import { TableProps } from "../../types/Table";
 import Modal from "../Modal";
 import ShowInfosModal from "../ShowInfosModal";
@@ -35,7 +35,7 @@ export default function TableComponent({
   const [selectedDataRow, setSelectedDataRow] =
     useState<(DetailedAuthor | DetailedBook)[]>();
   const [selectedDataShow, setSelectedDataShow] =
-    useState<(DetailedAuthor | DetailedBook)[]>();
+    useState<(DetailedAuthor | DetailedBook | Book | Author)[]>();
   const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false);
   const [isModalAddOpen, setIsModalAddOpen] = useState(false);
   const [tableWidth, setTableWidth] = useState("auto");
@@ -48,19 +48,39 @@ export default function TableComponent({
     ? [...columns]
     : [{ header: "Sem colunas definidas", accessorKey: "" }];
 
-  let fallbackData;
+  let fallbackData: (DetailedAuthor | DetailedBook)[];
   if (validData) {
-    fallbackData = [...data];
+    fallbackData = data as (DetailedAuthor | DetailedBook)[];
   } else {
     fallbackData =
       type === "authors"
-        ? [{ id: 0, author: "Nada para exibir" }]
-        : [{ id: 0, book: "Nada para exibir" }];
+        ? [
+            {
+              id: 0,
+              author: "Nada para exibir",
+              book: "N/A",
+              recommendedAge: 0,
+              pages: 0,
+              price: 0,
+              publicationYear: 0,
+            },
+          ]
+        : [
+            {
+              id: 0,
+              book: "Nada para exibir",
+              author: "N/A",
+              recommendedAge: 0,
+              pages: 0,
+              price: 0,
+              publicationYear: 0,
+            },
+          ];
   }
 
-  const table = useReactTable<DetailedAuthor | DetailedBook>({
+  const table = useReactTable<DetailedAuthor | DetailedBook | Author | Book>({
     columns: columns ?? fallbackColumn,
-    data: data ?? (fallbackData as DetailedAuthor[] | DetailedBook[]),
+    data: data ?? fallbackData,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
@@ -245,7 +265,9 @@ export default function TableComponent({
                     color="red"
                     className={styles.button}
                     onClick={() => {
-                      setSelectedDataRow([row.original]);
+                      if ("recommendedAge" in row.original) {
+                        setSelectedDataRow([row.original]);
+                      }
                       setIsDeleteAlertOpen(true);
                     }}
                   >
