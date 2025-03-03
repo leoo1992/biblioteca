@@ -94,8 +94,6 @@ export default function TableComponent({
     return () => window.removeEventListener("resize", updateTableWidth);
   }, []);
 
-  console.log(selectedDataRow);
-
   return (
     <Flex direction="column" align="center" width="100%" height="100%">
       {useDelete && (
